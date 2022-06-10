@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePainelComponent implements OnInit {
 
+  dadosApi: Array<any> = new Array();
+
+
   constructor() { }
 
   ngOnInit(): void {

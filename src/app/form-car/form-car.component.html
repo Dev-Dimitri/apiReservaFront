@@ -1,52 +1,5 @@
 <div class="container-lfuid">
   <div id="layoutSidenav">
-    <div id="layoutSidenav_nav">
-      <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-        <div class="sb-sidenav-menu">
-          <div class="nav">
-            <div class="sb-sidenav-menu-heading">Manage Actions</div>
-            <a
-              class="nav-link collapsed"
-              routerLink="/home"
-              data-toggle="collapse"
-              data-target="#collapseLayouts"
-              aria-expanded="false"
-              aria-controls="collapseLayouts"
-              ><div class="sb-nav-link-icon">
-                <i class="fas fa-columns"></i>
-              </div>
-              Home
-              <div class="sb-sidenav-collapse-arrow">
-                <i class="fas fa-angle-down"></i></div
-            ></a>
-            <a class="nav-link" href="index.html">
-                <div class="sb-nav-link-icon">
-                    <i class="fas fa-tachometer-alt"></i>
-                </div>
-              Register Car
-            </a>
-            <a
-              class="nav-link collapsed"
-              href="#"
-              data-toggle="collapse"
-              data-target="#collapseLayouts"
-              aria-expanded="false"
-              aria-controls="collapseLayouts"
-              ><div class="sb-nav-link-icon">
-                <i class="fas fa-columns"></i>
-              </div>
-              Delete Car
-              <div class="sb-sidenav-collapse-arrow">
-                <i class="fas fa-angle-down"></i></div
-            ></a>
-          </div>
-        </div>
-        <div class="sb-sidenav-footer">
-          <div class="small">Logged in as:</div>
-          Start Bootstrap
-        </div>
-      </nav>
-    </div>
     <div id="layoutSidenav_content">
       <main>
         <div class="container-fluid">
@@ -81,9 +34,9 @@
                   <button
                     type="button"
                     class="btn btn-primary mb-1 ml-4"
-                    (click)="obterDados()"
+                    (click)="salvando()"
                   >
-                    Obter Dados
+                    Salvar Registro
                   </button>
                   <input
                     style="display: none"
@@ -130,3 +83,27 @@
     </div>
   </div>
 </div>
+
+<div class="row">
+    <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">Numeracao</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Carro</th>
+            <th scope="col">Marca</th>
+            <th scope="col">Data</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of dadosApi">
+            <th scope="row">1</th>
+            <td>{{item.nameCar}}</td>
+            <td>{{item.modelCar}}</td>
+            <td>{{item.companyCar}}</td>
+            <td>{{item.pkCar}}</td>
+            <td>{{item.dateManufacture | date: 'dd/MM/yyyy'}}</td>
+          </tr>
+        </tbody>
+      </table>
+  </div>

@@ -6,7 +6,7 @@ import { CadastroCarroComponent } from './cadastro-carro/cadastro-carro.componen
 import { FormCarComponent } from './form-car/form-car.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {path: '', redirectTo: 'home/cadastrar', pathMatch: 'full'},
  {path: 'home', component: HomePainelComponent},
  {path: 'home/cadastrar', component: CadastroCarroComponent},
  {path: 'home/form', component: FormCarComponent}

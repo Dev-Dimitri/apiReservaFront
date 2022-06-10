@@ -1,9 +1,8 @@
+import { MenuModule } from './shared/menu/menu.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {MatInputModule} from '@angular/material/input'
 import {HttpClientModule} from '@angular/common/http'
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CadastroCarroComponent } from './cadastro-carro/cadastro-carro.component';
@@ -14,6 +13,7 @@ import { FormCarComponent } from './form-car/form-car.component';
 import { FormCarModule } from './form-car/form-car.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormCarService } from './form-car/form-car.service';
+import { MenuComponent } from './shared/menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -28,15 +28,11 @@ import { FormCarService } from './form-car/form-car.service';
     CadastroCarroModule,
     HomePainelModule,
     FormsModule,
-    MatInputModule,
-    MatFormFieldModule,
     HttpClientModule,
     FormCarModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
-    
-
-
+    ReactiveFormsModule,
+    MenuModule
   ],
   providers: [FormCarService],
   bootstrap: [AppComponent]

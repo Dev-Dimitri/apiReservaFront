@@ -1,8 +1,10 @@
 import { FormCarService } from './form-car.service';
 import { CarModel } from './../Models/CarModel';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms'; 
+import { FormControl } from '@angular/forms'; 
+import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-form-car',
@@ -10,15 +12,24 @@ import { Observable } from 'rxjs';
   styleUrls: ['./form-car.component.css']
 })
 export class FormCarComponent implements OnInit {
-  data: any;
 
+  data: any;
   dadosApi: Array<any> = new Array();
-  carMapper?: CarModel;
-  formCar?: FormGroup;
+  carMapper: CarModel = new CarModel();
+  formCar?: FormGroup
   observableCar?: Observable<CarModel>
   selectedFiles?: FileList;
   currentFileUpload?: File;
   selectedFile = null;
+
+
+
+  constructor(
+    private fCarService: FormCarService) { }
+
+  ngOnInit(){
+    this.listarAlunosDb();
+  }
 
   carModel = new FormGroup({
     pkCar: new FormControl(''),
@@ -27,22 +38,35 @@ export class FormCarComponent implements OnInit {
     companyCar: new FormControl(''),
     dateManufacture: new FormControl(''),
   });
-   
-  constructor(private fCarService: FormCarService) { }
-
-  ngOnInit(){
-    this.listarAlunosDb();
-  }
 
 
   listarAlunosDb(){
-    this.fCarService.listarAlunos().subscribe(dadosApi => {
+    this.fCarService.listarCars().subscribe(dadosApi => {
     this.dadosApi = dadosApi;
     console.log(this.dadosApi);
     }, err => {
       console.log("erro ao carregar dados!", err);
     })
   
+  }
+
+  // salvarCarros(){
+  //   this.carMapper.nameCar = this.formCar?.get("nameCar")?.value;
+  //   this.carMapper.companyCar = this.formCar?.get("companyCar")?.value;
+  //   this.fCarService.createCars(this.carMapper).subscribe(
+  //     (success: CarModel) => {
+  //       this.resetForm();
+  //       this.toastr.success("Registro salvo com sucesso!");
+  //   },(errorMsg) => {
+  //     this.toastr.error(errorMsg.error.message, "Não foi possível concluir o cadastro!");
+  //     console.log(errorMsg);
+  //     console.log(this.carMapper)
+  //   })
+
+  // }
+
+  salvando(){
+
   }
 
   resetForm(){
