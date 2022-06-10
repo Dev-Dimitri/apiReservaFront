@@ -1,51 +1,79 @@
 <div id="layoutSidenav">
-    <div id="layoutSidenav_nav">
-        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-            <div class="sb-sidenav-menu">
-                <div class="nav">
-                    <div class="sb-sidenav-menu-heading">Manage Actions</div>
-                    <a class="nav-link" routerLink="/home/cadastrar"
-                        ><div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                        Manage System</a
-                    >
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts"
-                        ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                        Car List
-                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
-                    ></a>
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts"
-                        ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                        Customer List
-                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
-                    ></a>
+  <!-- <div id="layoutSidenav_nav">
+    <nav
+      class="sb-sidenav accordion sb-sidenav-dark backRed"
+      id="sidenavAccordion"
+    >
+      <div class="sb-sidenav-menu">
+        <div class="nav">
+          <div class="sb-sidenav-menu-heading">Management</div>
+          <a class="nav-link" routerLink="/home/cadastrar"
+            ><div class="sb-nav-link-icon">
+              <i class="fas fa-tachometer-alt"></i>
+            </div>
+            Manage System</a
+          >
+          <a
+            class="nav-link collapsed"
+            href="#"
+            data-toggle="collapse"
+            data-target="#collapseLayouts"
+            aria-expanded="false"
+            aria-controls="collapseLayouts"
+            ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+            Car List
+            <div class="sb-sidenav-collapse-arrow">
+              <i class="fas fa-angle-down"></i></div
+          ></a>
+        </div>
+      </div>
+    </nav> -->
+  <!-- </div> -->
+  <div id="layoutSidenav_content">
+    <main>
+      <div class="container-fluid">
+        <h1 class="mt-4">
+          Aplicação Utilizando Springboot no Backend & Angular no front.
+          (Auxilio de H2 database).
+        </h1>
+        <ol class="breadcrumb mb-4">
+          <li class="breadcrumb-item active">
+            Desenvolvido por Dimitri Almeida.
+          </li>
+        </ol>
+      </div>
+      <div class="row">
+        <div class="col-xl-3 col-md-6">
+          <div class="card bg-primary text-white mb-4">
+            <div class="card-body">
+              <div
+                class="card-footer d-flex align-items-center justify-content-between"
+              >
+                <a class="small text-white stretched-link" href="#"
+                  >CLICK HERE TO LISTEN</a
+                >
+                <div class="small text-white">
+                  <i class="fas fa-angle-right"></i>
                 </div>
+              </div>
             </div>
-            <!-- <div class="sb-sidenav-footer">
-                <div class="small">Logged in as:</div>
-                Start Bootstrap
-            </div> -->
-        </nav>
-    </div>
-    <div id="layoutSidenav_content">
-        <main>
-            <div class="container-fluid">
-                <h1 class="mt-4">Aplicação Utilizando Springboot no Backend & Angular no front. (Auxilio de H2 database).</h1>
-                <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item active">Desenvolvido por Dimitri Almeida.</li>
-                </ol>
-            </div>
-        </main>
-        <footer class="py-4 bg-light mt-auto">
-            <div class="container-fluid">
-                <div class="d-flex align-items-center justify-content-between small">
-                    <div class="text-muted">Aplicação teste p FortesTecnologia // Dimitri Almeida</div>
-                    <div>
-                        <a href="#">Privacy Policy</a>
-                        &middot;
-                        <a href="#">Terms &amp; Conditions</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="py-4 bg-light mt-auto">
+      <div class="container-fluid">
+        <div class="d-flex align-items-center justify-content-between small">
+          <div class="text-muted">
+            Aplicação teste p FortesTecnologia // Dimitri Almeida
+          </div>
+          <div>
+            <a href="#">Privacy Policy</a>
+            &middot;
+            <a href="#">Terms &amp; Conditions</a>
+          </div>
+        </div>
+      </div>
+    </footer>
   </div>
+</div>

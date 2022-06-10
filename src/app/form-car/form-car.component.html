@@ -1,0 +1,132 @@
+<div class="container-lfuid">
+  <div id="layoutSidenav">
+    <div id="layoutSidenav_nav">
+      <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+        <div class="sb-sidenav-menu">
+          <div class="nav">
+            <div class="sb-sidenav-menu-heading">Manage Actions</div>
+            <a
+              class="nav-link collapsed"
+              routerLink="/home"
+              data-toggle="collapse"
+              data-target="#collapseLayouts"
+              aria-expanded="false"
+              aria-controls="collapseLayouts"
+              ><div class="sb-nav-link-icon">
+                <i class="fas fa-columns"></i>
+              </div>
+              Home
+              <div class="sb-sidenav-collapse-arrow">
+                <i class="fas fa-angle-down"></i></div
+            ></a>
+            <a class="nav-link" href="index.html">
+                <div class="sb-nav-link-icon">
+                    <i class="fas fa-tachometer-alt"></i>
+                </div>
+              Register Car
+            </a>
+            <a
+              class="nav-link collapsed"
+              href="#"
+              data-toggle="collapse"
+              data-target="#collapseLayouts"
+              aria-expanded="false"
+              aria-controls="collapseLayouts"
+              ><div class="sb-nav-link-icon">
+                <i class="fas fa-columns"></i>
+              </div>
+              Delete Car
+              <div class="sb-sidenav-collapse-arrow">
+                <i class="fas fa-angle-down"></i></div
+            ></a>
+          </div>
+        </div>
+        <div class="sb-sidenav-footer">
+          <div class="small">Logged in as:</div>
+          Start Bootstrap
+        </div>
+      </nav>
+    </div>
+    <div id="layoutSidenav_content">
+      <main>
+        <div class="container-fluid">
+          <h1 class="mt-4">Fill in the form bellow:</h1>
+          <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Product information:</li>
+          </ol>
+          <div class="row">
+            <form class="teste" [formGroup]="carModel">
+              <div class="col-md-12">
+                <div class="col-md-12">
+                  <label>Numeração</label>
+                  <br />
+                  <input formControlName="pkCar" type="text" />
+                  <br />
+                  <label>Nome do carro:</label>
+                  <br />
+                  <input formControlName="nameCar" type="text" />
+                  <br />
+                  <label> Modelo do carro:</label>
+                  <br />
+                  <input formControlName="modelCar" type="text" />
+                  <br />
+                  <label>Marca do carro: </label>
+                  <br />
+                  <input formControlName="companyCar" type="text" />
+                  <br />
+                  <label>Data de fabricação:</label>
+                  <br />
+                  <input formControlName="dateManufacture" type="text" />
+                  <br />
+                  <button
+                    type="button"
+                    class="btn btn-primary mb-1 ml-4"
+                    (click)="obterDados()"
+                  >
+                    Obter Dados
+                  </button>
+                  <input
+                    style="display: none"
+                    type="file"
+                    (change)="onFileChanged($event)"
+                    accept="image/jpg, image/jpeg, image/png"
+                    #fileInput
+                  />
+                  <button
+                    class="btn pt-0"
+                    style="font-size: 20px; color: #00548e"
+                    title="Selecionar imagem"
+                    (click)="fileInput.click()"
+                  >
+                    <button type="button" class="btn btn-primary mt-1 ml-4">
+                      Upload car Image!
+                    </button>
+                  </button>
+                  <div class="row">
+                    <pre>
+                        {{ data | json }}
+                     </pre>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </main>
+      <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid">
+          <div class="d-flex align-items-center justify-content-between small">
+            <div class="text-muted">
+              Aplicação teste p FortesTecnologia // Dimitri Almeida
+            </div>
+            <div>
+              <a href="#">Privacy Policy</a>
+              &middot;
+              <a href="#">Terms &amp; Conditions</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+</div>
