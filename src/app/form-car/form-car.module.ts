@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { FormCarRoutingModule } from './form-car-routing.module';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -12,7 +13,7 @@ import { FormCarRoutingModule } from './form-car-routing.module';
     CommonModule,
     FormCarRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ]
 })
 export class FormCarModule { }

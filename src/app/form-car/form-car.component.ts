@@ -1,10 +1,11 @@
+import { CarModel } from 'src/app/Models/CarModel';
 import { FormCarService } from './form-car.service';
-import { CarModel } from './../Models/CarModel';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms'; 
 import { FormGroup } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-car',
@@ -14,67 +15,102 @@ import { ToastrService } from 'ngx-toastr';
 export class FormCarComponent implements OnInit {
 
   data: any;
-  dadosApi: Array<any> = new Array();
-  carMapper: CarModel = new CarModel();
-  formCar?: FormGroup
+  dadosApi: any[] = []
+  carMapper: CarModel = {};
+  formCar!: FormGroup
   observableCar?: Observable<CarModel>
   selectedFiles?: FileList;
   currentFileUpload?: File;
   selectedFile = null;
 
-
-
   constructor(
-    private fCarService: FormCarService) { }
+    private fCarService: FormCarService,
+    private toastr: ToastrService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit(){
     this.listarAlunosDb();
+    this.createForm();
+    this.paramMapRoute();
   }
 
-  carModel = new FormGroup({
-    pkCar: new FormControl(''),
-    nameCar: new FormControl(''),
-    modelCar: new FormControl(''),
-    companyCar: new FormControl(''),
-    dateManufacture: new FormControl(''),
-  });
+  paramMapRoute(){
+    this.activatedRoute.paramMap
+    .pipe(map((parameters) => parameters.get('id')))
+    .subscribe((id) => {this.loadCar((id))} );
+  }
 
+  private loadCar(id: string | null){
+    if(id){
+      this.fCarService.listarCarsById(parseInt(id)).subscribe(carModel => {
+        this.carMapper = carModel
+        console.log(carModel);
+        this.setCarros(carModel);
+      })
+    }
+  }
+
+  createForm(){
+    this.formCar = new FormGroup({
+      pkCar: new FormControl(''),
+        nameCar: new FormControl(''),
+        modelCar: new FormControl(''),
+        companyCar: new FormControl(''),
+        dateManufacture: new FormControl(''),
+        descricao: new FormControl(''),
+        imageCar: new FormControl('')
+    })
+  }
+
+  onChangeButton(){
+    this.carMapper.nameCar = this.formCar.get("nomeCar")?.value
+    console.log(this.carMapper);
+  }
+
+   resetForm(){
+    this.formCar.reset();
+    this.carMapper = {};
+  }
 
   listarAlunosDb(){
     this.fCarService.listarCars().subscribe(dadosApi => {
     this.dadosApi = dadosApi;
-    console.log(this.dadosApi);
     }, err => {
       console.log("erro ao carregar dados!", err);
     })
-  
   }
 
-  // salvarCarros(){
-  //   this.carMapper.nameCar = this.formCar?.get("nameCar")?.value;
-  //   this.carMapper.companyCar = this.formCar?.get("companyCar")?.value;
-  //   this.fCarService.createCars(this.carMapper).subscribe(
-  //     (success: CarModel) => {
-  //       this.resetForm();
-  //       this.toastr.success("Registro salvo com sucesso!");
-  //   },(errorMsg) => {
-  //     this.toastr.error(errorMsg.error.message, "Não foi possível concluir o cadastro!");
-  //     console.log(errorMsg);
-  //     console.log(this.carMapper)
-  //   })
-
-  // }
-
-  salvando(){
-
+  salvarCarros(){
+    this.carMapper.nameCar = this.formCar?.get("nameCar")?.value;
+    this.carMapper.companyCar = this.formCar?.get("companyCar")?.value;
+    this.carMapper.dateManufacture = this.formCar?.get("dateManufacture")?.value;
+    this.carMapper.descricao = this.formCar?.get("descricao")?.value;
+    this.carMapper.modelCar = this.formCar?.get("modelCar")?.value;
+    this.fCarService.createCars(this.carMapper).subscribe(
+      (success: CarModel) => {
+        this.resetForm();
+        this.toastr.success("Registro salvo com sucesso!");
+        setTimeout(() => this.router.navigate(["/home/listagem"]), 1500);
+    },(errorMsg) => {
+      this.toastr.error(errorMsg.error.message);
+    })
   }
 
-  resetForm(){
-    this.carModel.reset();
-    this.carMapper = new CarModel();
+  setCarros(evento: any) {
+    if (evento) {
+      this.carMapper = evento;
+      this.formCar.get("pkCar")?.setValue(evento.pkCar);
+      this.formCar.get("nameCar")?.setValue(evento.nameCar);
+      this.formCar.get("modelCar")?.setValue(evento.modelCar);
+      this.formCar.get("companyCar")?.setValue(evento.companyCar);
+      this.formCar.get("dateManufacture")?.setValue(evento.dateManufacture);
+      this.formCar.get("descricao")?.setValue(evento.descricao);
+      this.formCar.get("imageCar")?.setValue(evento.imageCar);
+    } else {
+      this.carMapper = {};
+    }
   }
-
-
 
 
   setForm(evento: any){
@@ -87,16 +123,10 @@ export class FormCarComponent implements OnInit {
       this.formCar?.get("dateManufacture")?.setValue(evento.dateManufacture);
     
     }else{
-      this.carMapper = new CarModel();
+      this.carMapper = {};
     }
-
   }
   
-  obterDados(){
-    this.data = this.carModel.value;
-  }
-
-
   onFileChanged(evento: any) {
     let array = evento.target.value.split('.');
     let extensao = array[array.length - 1];
@@ -106,14 +136,12 @@ export class FormCarComponent implements OnInit {
       reader.readAsDataURL(file);
       reader.onloadend = () => {
         if (reader.result) {
-          // this.formMantenedora.get("logomarca").setValue(reader.result);
-          // this.mantenedoraModel.logomarca = reader.result;
+          this.formCar?.get("imageCar")?.setValue(reader.result);
+          this.carMapper.imageCar = reader.result;
         }
       };
     }else {
-      // this.toastr.warning('Arquivo não suportado.', 'Aviso');
+     this.toastr.warning('Arquivo não suportado.', 'Aviso');
     }
   }
-
-
 }

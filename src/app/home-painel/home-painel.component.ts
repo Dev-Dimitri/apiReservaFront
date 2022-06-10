@@ -15,4 +15,5 @@ export class HomePainelComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
 }

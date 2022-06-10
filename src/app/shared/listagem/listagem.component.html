@@ -1,0 +1,26 @@
+<table class="table">
+  <thead class="thead-dark">
+      <h1> Lista de carros </h1>
+    <tr>
+      <th scope="col">Nome do carro:</th>
+      <th scope="col">Modelo do carro:</th>
+      <th scope="col">Marca do carro:</th>
+      <th scope="col">Data de fabricação::</th>
+      <th scope="col">Imagem:</th>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of dadosApi">
+      <td>{{ item.nameCar }}</td>
+      <td>{{ item.modelCar }}</td>
+      <td>{{ item.companyCar }}</td>
+      <td>{{ item.dateManufacture | date: "dd/MM/yyyy" }}</td>
+      <td><img class="card-img-top" height="80px" src={{item.imageCar}}></td>
+      <td> <button class="btn btn-success" type="submit" routerLink="/home/editar/{{item.pkCar}}" (ObjetoSelecionado)= "'[setMantenedora($event)]'">Editar</button></td>
+      <td> <button class="btn btn-danger" type="submit" (click)="delete(item)">Excluir</button></td>
+      
+    </tr>
+  </tbody>
+</table>

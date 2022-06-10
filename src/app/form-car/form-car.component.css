@@ -1,25 +1,38 @@
 form {
-    width: 35%;
-    margin: 0 auto;
-    background-color: #ec5109;
+    background-color: #343a40;
     border: 5px solid black;
     border-radius: 5px;
+    margin-top: 20px;
+    margin-right: 20px;
 
 }
 
 form input{
-    width: 85%;
-    margin-left: 20px;
+  margin-top: 5px;
+  background-color: white;
 }
 
-form label {
-    margin-top: 20px;
-    margin-left: 20px;
-    text-align: center;
-    width: 70%;
-    font-size: 20px;
-    color: white
+form label{
+  color: white;;
 }
+
+
+
+form button{
+  width: 20%;
+  margin: 0 auto;
+}
+
+
+form #form6Example4 {
+  width: 70%;
+}
+
+form h1{
+  color: white;
+  text-align: center;
+}
+
 
 
 :root {

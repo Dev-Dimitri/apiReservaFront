@@ -1,71 +1,77 @@
-<div class="container-lfuid">
+<div class="container-fluid">
   <div id="layoutSidenav">
     <div id="layoutSidenav_content">
-      <main>
-        <div class="container-fluid">
-          <h1 class="mt-4">Fill in the form bellow:</h1>
-          <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item active">Product information:</li>
-          </ol>
-          <div class="row">
-            <form class="teste" [formGroup]="carModel">
-              <div class="col-md-12">
-                <div class="col-md-12">
-                  <label>Numeração</label>
-                  <br />
-                  <input formControlName="pkCar" type="text" />
-                  <br />
-                  <label>Nome do carro:</label>
-                  <br />
-                  <input formControlName="nameCar" type="text" />
-                  <br />
-                  <label> Modelo do carro:</label>
-                  <br />
-                  <input formControlName="modelCar" type="text" />
-                  <br />
-                  <label>Marca do carro: </label>
-                  <br />
-                  <input formControlName="companyCar" type="text" />
-                  <br />
-                  <label>Data de fabricação:</label>
-                  <br />
-                  <input formControlName="dateManufacture" type="text" />
-                  <br />
-                  <button
-                    type="button"
-                    class="btn btn-primary mb-1 ml-4"
-                    (click)="salvando()"
-                  >
-                    Salvar Registro
-                  </button>
-                  <input
-                    style="display: none"
-                    type="file"
-                    (change)="onFileChanged($event)"
-                    accept="image/jpg, image/jpeg, image/png"
-                    #fileInput
-                  />
-                  <button
-                    class="btn pt-0"
-                    style="font-size: 20px; color: #00548e"
-                    title="Selecionar imagem"
-                    (click)="fileInput.click()"
-                  >
-                    <button type="button" class="btn btn-primary mt-1 ml-4">
-                      Upload car Image!
-                    </button>
-                  </button>
-                  <div class="row">
-                    <pre>
-                        {{ data | json }}
-                     </pre>
-                  </div>
-                </div>
-              </div>
-            </form>
+      <form>
+
+        <h1> CADASTRO DE VEICULOS</h1>
+        <!-- 2 column grid layout with text inputs for the first and last names -->
+        <div class="row mb-4 mx-2">
+          <div class="col">
+            <div class="form-outline" [formGroup]= "formCar">
+              <label class="form-label" for="form6Example1">Nome</label>
+              <input type="text" class="form-control" id="form6Example1" formControlName="nameCar" />
+            </div>
+          </div>
+          <div class="col">           
+            <div class="form-outline" [formGroup]= "formCar">
+              <label class="form-label" for="form6Example2" >Modelo</label>
+              <input type="text" class="form-control" id="form6Example2" formControlName="modelCar" />          
+            </div>
           </div>
         </div>
-      </main>
+
+        <div class="row mb-4 mx-2">
+          <div class="col">
+            <div class="form-outline"[formGroup]= "formCar">
+              <label class="form-label" for="form6Example1">Fabricante</label>
+              <input type="text" class="form-control" id="form6Example3" formControlName="companyCar" />
+            </div>
+          </div>
+          <div class="col">           
+            <div class="form-outline" [formGroup]= "formCar">
+              <label class="form-label" for="form6Example2">Data de fabricação</label>
+              <input type="text" class="form-control" id="form6Example4" formControlName="dateManufacture"/>  
+            </div>
+          </div>
+          <div class="col">
+            <div [formGroup] = "formCar">
+              <img
+                class="imageObject img-thumbnail pb-2"
+                *ngIf="formCar?.get('imageCar')?.value"
+                [src]="formCar?.get('imageCar')?.value">
+            </div>
+            <label class="form-label ml-2" for="form6Example2">Selecionar imagem</label>
+            <input
+                style="display: none"
+                type="file"
+                (change)="onFileChanged($event)"
+                accept="image/jpg, image/jpeg, image/png"
+                #fileInput>
+
+              <button
+                class="btn pt-0 botImg mt-2"
+                style="font-size: 15px; color: #a0a0a0; width: 80%; background-color: rgb(255, 255, 255);"
+                title="Selecionar imagem"
+                (click)="fileInput.click()">
+                <i class="mr-2" aria-hidden="true"></i>Procurar arquivo
+              </button>
+
+          </div>
+            
+        </div>
+      
+      
+      
+        <!-- Message input -->
+        <div class="form-outline mb-4 mx-3" [formGroup]="formCar">
+          <label class="form-label" for="form6Example7">Descrição: </label>
+          <textarea class="form-control" id="form6Example7" rows="4" formControlName="descricao"></textarea>
+        </div>
+      
+      
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-success btn-block mb-4" (click)="salvarCarros()">Salvar registro</button>
+      </form>
       <footer class="py-4 bg-light mt-auto">
         <div class="container-fluid">
           <div class="d-flex align-items-center justify-content-between small">
@@ -83,27 +89,3 @@
     </div>
   </div>
 </div>
-
-<div class="row">
-    <table class="table table-dark">
-        <thead>
-          <tr>
-            <th scope="col">Numeracao</th>
-            <th scope="col">Nome</th>
-            <th scope="col">Carro</th>
-            <th scope="col">Marca</th>
-            <th scope="col">Data</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of dadosApi">
-            <th scope="row">1</th>
-            <td>{{item.nameCar}}</td>
-            <td>{{item.modelCar}}</td>
-            <td>{{item.companyCar}}</td>
-            <td>{{item.pkCar}}</td>
-            <td>{{item.dateManufacture | date: 'dd/MM/yyyy'}}</td>
-          </tr>
-        </tbody>
-      </table>
-  </div>
