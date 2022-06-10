@@ -36,7 +36,7 @@
           <div class="col">
             <div [formGroup] = "formCar">
               <img
-                class="imageObject img-thumbnail pb-2"
+                class="imageObject img-thumbnail pb-2" style="width: 250px;"
                 *ngIf="formCar?.get('imageCar')?.value"
                 [src]="formCar?.get('imageCar')?.value">
             </div>
