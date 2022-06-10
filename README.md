@@ -7,3 +7,5 @@ Foi usado conceito de rotas, parametros por URL, toastr, fileReader, aproveitame
 
 !----------------IMPORTANTE----------------------!
 Ao baixar o projeto utilizar o npm install @angular/cli p download do node_modules.
+
+-------> ng serve p rodar a aplicação.
